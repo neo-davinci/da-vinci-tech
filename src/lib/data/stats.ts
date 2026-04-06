@@ -1,6 +1,4 @@
-import { StatsResponse } from "@/app/api/stats/route";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
+import { getStats } from "@/lib/stats";
 
 export type DashboardStats = {
   systemStatus: string;
@@ -17,22 +15,13 @@ export type DashboardStats = {
   uptime: string;
   cpuModel: string;
   deployUrl: string;
-  recentActivity: StatsResponse["recentActivity"];
+  recentActivity: Awaited<ReturnType<typeof getStats>>["recentActivity"];
   checkedAt: string;
 };
 
 export async function fetchStats(): Promise<DashboardStats> {
-  const res = await fetch(`${BASE_URL}/api/stats`, {
-    cache: "no-store",
-  });
+  const data = await getStats();
 
-  if (!res.ok) {
-    throw new Error(`Stats fetch failed: ${res.status} ${res.statusText}`);
-  }
-
-  const data: StatsResponse = await res.json();
-
-  // Parse the raw stats array into structured fields
   const byTitle = Object.fromEntries(data.stats.map((s) => [s.title, s]));
 
   return {

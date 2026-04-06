@@ -49,7 +49,7 @@ export default async function ActivityPage() {
   return (
     <div className="relative flex-1 overflow-hidden">
       <HeroSection
-        icon={Clock}
+        iconName="clock"
         label="Timeline"
         title="Activity"
         description={`${events.length} events · Last updated ${new Date(data.checkedAt).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true })}`}

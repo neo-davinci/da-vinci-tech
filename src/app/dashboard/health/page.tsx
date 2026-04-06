@@ -51,7 +51,7 @@ export default async function HealthPage() {
   return (
     <div className="relative flex-1 overflow-hidden">
       <HeroSection
-        icon={Shield}
+        iconName="shield"
         label="System Health"
         title="Health Monitor"
         description={`Checked at ${checkedTime} · ${operational}/${total} components operational`}

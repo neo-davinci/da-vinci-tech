@@ -7,7 +7,6 @@ import { HeroSection } from "@/components/ui/hero-section";
 import { AreaGraph } from "@/features/overview/components/area-graph";
 import { BarGraph } from "@/features/overview/components/bar-graph";
 import { PieGraph } from "@/features/overview/components/pie-graph";
-import { RecentSales } from "@/features/overview/components/recent-sales";
 import {
   Activity,
   ArrowUpRight,
@@ -19,7 +18,6 @@ import {
   Zap,
   Server,
   TrendingUp,
-  Eye,
 } from "lucide-react";
 
 export default async function DashboardPage() {
@@ -49,7 +47,7 @@ export default async function DashboardPage() {
     <div className="relative flex-1 overflow-hidden">
       {/* Hero */}
       <HeroSection
-        icon={Shield}
+        iconName="shield"
         label="Control Room"
         title="Neo OS"
         description={`Orlando, FL · Eastern Time · ${new Date().toLocaleDateString("en-US", {

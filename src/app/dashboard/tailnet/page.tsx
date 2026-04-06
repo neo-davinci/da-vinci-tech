@@ -19,7 +19,7 @@ export default async function TailnetPage() {
   return (
     <div className="relative flex-1 overflow-hidden">
       <HeroSection
-        icon={Globe}
+        iconName="globe"
         label="Network"
         title="Tailnet"
         description={`${data.devices.length} registered · ${onlineCount} online`}

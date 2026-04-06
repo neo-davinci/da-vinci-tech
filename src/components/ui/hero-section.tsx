@@ -3,7 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedGridPattern } from "@/components/magic/animated-grid-pattern";
-import type { LucideIcon } from "lucide-react";
+import { getIcon } from "@/components/icons";
 
 export interface HeroSectionProps extends React.ComponentPropsWithoutRef<"div"> {
   /** Uppercase label above the title */
@@ -12,8 +12,8 @@ export interface HeroSectionProps extends React.ComponentPropsWithoutRef<"div"> 
   title?: string;
   /** Description text */
   description?: string;
-  /** Lucide icon for the label */
-  icon?: LucideIcon;
+  /** Icon name to resolve via getIcon() */
+  iconName?: string;
   /** Grid pattern numSquares prop */
   gridSquares?: number;
   /** Grid pattern maxOpacity prop */
@@ -30,7 +30,7 @@ function HeroSection({
   label,
   title,
   description,
-  icon: Icon,
+  iconName,
   gridSquares = 30,
   gridMaxOpacity = 0.2,
   gridDuration = 6,
@@ -40,6 +40,8 @@ function HeroSection({
   children,
   ...props
 }: HeroSectionProps) {
+  const Icon = iconName ? getIcon(iconName) : null;
+
   return (
     <div
       data-slot="hero-section"
@@ -49,10 +51,8 @@ function HeroSection({
       )}
       {...props}
     >
-      {/* Ambient glow orbs */}
       <div className="hero-ambient-glow pointer-events-none absolute inset-0 z-0" aria-hidden="true" />
 
-      {/* Animated grid pattern */}
       <AnimatedGridPattern
         numSquares={gridSquares}
         maxOpacity={gridMaxOpacity}
@@ -61,10 +61,8 @@ function HeroSection({
         className={cn("opacity-20", gridClassName)}
       />
 
-      {/* Scanlines overlay */}
       <div className="hero-scanlines pointer-events-none absolute inset-0 z-[1]" aria-hidden="true" />
 
-      {/* Content */}
       <div className="relative z-10 px-6 py-10">
         {label && (
           <div className="flex items-center gap-2 mb-2">
